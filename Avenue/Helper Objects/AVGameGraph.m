@@ -13,7 +13,7 @@
 
 + (NSArray<AVGraphNode *> *)calculateShortestPathForGrid:(NSArray<NSArray<NSNumber *> *> *)grid
 {
-    
+
     // Initialization
     NSMutableArray<NSMutableArray<AVGraphNode *> *> *nodes = [NSMutableArray new];
     NSMutableArray<AVGraphNode *> *unvisitedNodes = [NSMutableArray new];
@@ -26,10 +26,10 @@
             [unvisitedNodes addObject:node];
         }
     }
-    
+
     AVGraphNode *currentNode = nodes[0][0];
     currentNode.distanceToNode = 0;
-    
+
     // Continue going through nodes until the exit node is reached.
     while (currentNode != nodes.lastObject.lastObject) {
         // Go through all of the current node's unvisited edges and update their distances.
@@ -44,9 +44,9 @@
             }
         }
         [unvisitedNodes removeObject:currentNode];
-        
+
         // Get the next node, which is the one with the minimum distance to it.
-        NSUInteger minimumNextDistance =  NSUIntegerMax;
+        NSUInteger minimumNextDistance = NSUIntegerMax;
         AVGraphNode *nextNode = nil;
         for (AVGraphNode *node in unvisitedNodes) {
             if (node.distanceToNode < minimumNextDistance) {
@@ -56,13 +56,13 @@
         }
         currentNode = nextNode;
     }
-    
+
     NSMutableArray<AVGraphNode *> *shortestPath = [NSMutableArray new];
     while (currentNode != nil) {
         [shortestPath addObject:currentNode];
         currentNode = currentNode.previousNode;
     }
-    
+
     return shortestPath;
 }
 
@@ -84,22 +84,22 @@
     NSMutableArray<AVGraphNode *> *adjacentNodes = [NSMutableArray new];
     NSUInteger row = node.row;
     NSUInteger column = node.column;
-    
+
     // Edge to the left.
     if (node.column != 0) {
-        [adjacentNodes addObject:nodes[row][column-1]];
+        [adjacentNodes addObject:nodes[row][column - 1]];
     }
     // Edge to the top.
     if (row != 0) {
-        [adjacentNodes addObject:nodes[row-1][column]];
+        [adjacentNodes addObject:nodes[row - 1][column]];
     }
     // Edge to the right.
     if (column != nodes.count - 1) {
-        [adjacentNodes addObject:nodes[row][column+1]];
+        [adjacentNodes addObject:nodes[row][column + 1]];
     }
     // Edge to the bottom.
     if (row != nodes.count - 1) {
-        [adjacentNodes addObject:nodes[row+1][column]];
+        [adjacentNodes addObject:nodes[row + 1][column]];
     }
     return [adjacentNodes copy];
 }

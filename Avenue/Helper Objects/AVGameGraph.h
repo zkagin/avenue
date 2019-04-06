@@ -6,8 +6,8 @@
 //  Copyright © 2017 Zach Kagin. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "AVGraphNode.h"
+#import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -21,7 +21,7 @@ static const NSUInteger kConceptChangeIncrement = 7;
 {
     if (level <= kConceptChangeIncrement) {
         return 5;
-    } else if (level <= 2*kConceptChangeIncrement) {
+    } else if (level <= 2 * kConceptChangeIncrement) {
         return 5 + 5 * (level - kConceptChangeIncrement);
     } else {
         return 40;
@@ -30,12 +30,12 @@ static const NSUInteger kConceptChangeIncrement = 7;
 
 + (CGFloat)boardColorScaleForLevel:(NSUInteger)level
 {
-    if (level <= 2*kConceptChangeIncrement) {
+    if (level <= 2 * kConceptChangeIncrement) {
         return 1.0f;
-    } else if (level <= 3*kConceptChangeIncrement) {
-        return 1.0f * (3*kConceptChangeIncrement - level) / kConceptChangeIncrement;
+    } else if (level <= 3 * kConceptChangeIncrement) {
+        return 1.0f * (3 * kConceptChangeIncrement - level) / kConceptChangeIncrement;
     } else if (level <= 28) {
-        return 1.0f - (4.0f*kConceptChangeIncrement - level) / kConceptChangeIncrement;
+        return 1.0f - (4.0f * kConceptChangeIncrement - level) / kConceptChangeIncrement;
     } else {
         return 1.0f;
     }
@@ -43,12 +43,11 @@ static const NSUInteger kConceptChangeIncrement = 7;
 
 + (BOOL)boardRandomColorsForLevel:(NSUInteger)level
 {
-    if (level <= 3*kConceptChangeIncrement) {
+    if (level <= 3 * kConceptChangeIncrement) {
         return NO;
     } else {
         return YES;
     }
 }
-
 
 @end

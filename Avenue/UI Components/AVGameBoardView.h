@@ -6,8 +6,8 @@
 //  Copyright © 2017 Zach Kagin. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "UIColor+Avenue.h"
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -34,10 +34,10 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * Properties related to the setup and rules of the board.
  */
-@property (nonatomic, readwrite) NSInteger boardSize;   // The number of rows and columns.
-@property (nonatomic, readwrite) NSInteger upperRange;  // The upper range of numbers allowed on the board.
-@property (nonatomic, readwrite) CGFloat colorScale;    // 1 = Full color palette, 0 = Gray scale.
-@property (nonatomic, readwrite) BOOL randomColors;     // Whether or not color strength should be linear to the number.
+@property (nonatomic, readwrite) NSInteger boardSize;  // The number of rows and columns.
+@property (nonatomic, readwrite) NSInteger upperRange; // The upper range of numbers allowed on the board.
+@property (nonatomic, readwrite) CGFloat colorScale;   // 1 = Full color palette, 0 = Gray scale.
+@property (nonatomic, readwrite) BOOL randomColors;    // Whether or not color strength should be linear to the number.
 
 /**
  * Information about the grid.

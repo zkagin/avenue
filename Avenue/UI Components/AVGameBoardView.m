@@ -10,21 +10,21 @@
 
 #import "AVGameCollectionViewCell.h"
 #import "AVGameGraph.h"
-#import "UIView+Avenue.h"
 #import "UIColor+Avenue.h"
+#import "UIView+Avenue.h"
 
-NSString * const kBoardCellReuseIdentifier = @"kBoardCellReuseIdentifier";
+NSString *const kBoardCellReuseIdentifier = @"kBoardCellReuseIdentifier";
 
 @interface AVGameBoardView () <UICollectionViewDataSource, UICollectionViewDelegate>
-@property (nonatomic, readonly) NSIndexPath *selectedIndex;  // The last item in the current path.
+@property (nonatomic, readonly) NSIndexPath *selectedIndex; // The last item in the current path.
 @end
 
 @implementation AVGameBoardView {
-    __weak id<AVGameBoardViewDelegate> _delegate;       // The delegate to notify of user actions.
-    NSMutableArray<NSIndexPath *> *_currentPath;        // A list of currently selected cells.
-    NSArray<NSIndexPath *> *_optimalPath;               // The correct path, or nil when the current path is correct or incomplete.
-    NSArray<NSArray<NSNumber *> *> *_gridInformation;   // The backing numbers for the grid.
-    
+    __weak id<AVGameBoardViewDelegate> _delegate; // The delegate to notify of user actions.
+    NSMutableArray<NSIndexPath *> *_currentPath;  // A list of currently selected cells.
+    NSArray<NSIndexPath *> *_optimalPath; // The correct path, or nil when the current path is correct or incomplete.
+    NSArray<NSArray<NSNumber *> *> *_gridInformation; // The backing numbers for the grid.
+
     // A dictionary mapping numbers to other randomly generated numbers, for the purpose of allowing colors to be
     // random, but consistent across moves and refreshes.
     NSMutableDictionary<NSNumber *, NSNumber *> *_randomNumberMapping;
@@ -37,7 +37,7 @@ NSString * const kBoardCellReuseIdentifier = @"kBoardCellReuseIdentifier";
     self = [super initWithFrame:CGRectZero collectionViewLayout:boardLayout];
     if (self) {
         self.translatesAutoresizingMaskIntoConstraints = NO;
-        
+
         // Defaults in case nothing has been set.
         self.boardSize = 2;
         self.upperRange = 5;
@@ -45,18 +45,18 @@ NSString * const kBoardCellReuseIdentifier = @"kBoardCellReuseIdentifier";
         self.randomColors = NO;
         _delegate = delegate;
         _randomNumberMapping = [[NSMutableDictionary alloc] init];
-        
+
         self.dataSource = self;
         self.delegate = self;
         self.backgroundColor = [UIColor clearColor];
         [self registerClass:[AVGameCollectionViewCell class] forCellWithReuseIdentifier:kBoardCellReuseIdentifier];
         [self.widthAnchor constraintEqualToAnchor:self.heightAnchor multiplier:1].active = YES;
-        
+
         // Add a gesture recognizer to allow swiping to move cells.
         UIPanGestureRecognizer *panGestureRecognizer =
             [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(av_didSwipe:)];
         [self addGestureRecognizer:panGestureRecognizer];
-        
+
         [self resetBoardWithNewGrid];
     }
     return self;
@@ -67,7 +67,6 @@ NSString * const kBoardCellReuseIdentifier = @"kBoardCellReuseIdentifier";
     return _currentPath.lastObject;
 }
 
-
 #pragma mark - Public Methods
 
 - (void)resetBoardWithNewGrid
@@ -75,12 +74,12 @@ NSString * const kBoardCellReuseIdentifier = @"kBoardCellReuseIdentifier";
     _optimalPath = nil;
     _gridInformation = [self av_generateGridInformation];
     _levelIsCompleted = NO;
-    
+
     // Reset the current path.
     _currentPath = [NSMutableArray new];
     [_currentPath addObject:[NSIndexPath indexPathForRow:0 inSection:0]];
     [self reloadData];
-    
+
     [_delegate gameBoardViewDidUpdateScore:self];
 }
 
@@ -91,8 +90,7 @@ NSString * const kBoardCellReuseIdentifier = @"kBoardCellReuseIdentifier";
 
 #pragma mark - UICollectionViewDataSource Methods
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView
-     numberOfItemsInSection:(NSInteger)section
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return self.boardSize;
 }
@@ -105,12 +103,12 @@ NSString * const kBoardCellReuseIdentifier = @"kBoardCellReuseIdentifier";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    AVGameCollectionViewCell *cell =
-        [collectionView dequeueReusableCellWithReuseIdentifier:kBoardCellReuseIdentifier forIndexPath:indexPath];
-    
+    AVGameCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kBoardCellReuseIdentifier
+                                                                               forIndexPath:indexPath];
+
     cell.valueLabel.font = [UIFont systemFontOfSize:(36 - 2 * self.boardSize) weight:UIFontWeightLight];
     NSInteger cellValue = _gridInformation[indexPath.row][indexPath.section].integerValue; // The score of the cell.
-    
+
     // Configure the text to show the End text, Star for the beginning, or the value of the cell.
     if (indexPath == [NSIndexPath indexPathForRow:self.boardSize - 1 inSection:self.boardSize - 1]) {
         cell.valueLabel.text = @"End";
@@ -119,7 +117,7 @@ NSString * const kBoardCellReuseIdentifier = @"kBoardCellReuseIdentifier";
     } else {
         cell.valueLabel.text = [NSString stringWithFormat:@"%ld", (long)cellValue];
     }
-    
+
     // Configure the color of the cell, wit the current path a dark blue and others depending on their value.
     if ([_currentPath containsObject:indexPath]) {
         cell.backgroundColor = [UIColor blueCellColor];
@@ -128,7 +126,7 @@ NSString * const kBoardCellReuseIdentifier = @"kBoardCellReuseIdentifier";
         cell.backgroundColor = [self av_colorForValue:cellValue];
         cell.valueLabel.textColor = [[UIColor blackColor] colorWithAlphaComponent:0.85f];
     }
-    
+
     // If the _optimalPath is not nil, we also show the correct path through a gray scale.
     if ([_optimalPath containsObject:indexPath]) {
         if ([_currentPath containsObject:indexPath]) {
@@ -137,13 +135,13 @@ NSString * const kBoardCellReuseIdentifier = @"kBoardCellReuseIdentifier";
             cell.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5f];
         }
     }
-    
+
     return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView
-                  layout:(UICollectionViewLayout *)collectionViewLayout
-  sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+                    layout:(UICollectionViewLayout *)collectionViewLayout
+    sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat dimension = (self.frame.size.width) / self.boardSize;
     return CGSizeMake(dimension, dimension);
@@ -169,7 +167,7 @@ NSString * const kBoardCellReuseIdentifier = @"kBoardCellReuseIdentifier";
     if (newIndexPath == nil) {
         return;
     }
-    
+
     // Check if the swipe is backwards, in which case this undoes the move.
     // The user must have at least two cells selected for this to work.
     if (_currentPath.count >= 2) {
@@ -189,7 +187,6 @@ NSString * const kBoardCellReuseIdentifier = @"kBoardCellReuseIdentifier";
         return;
     }
 
-    
     if ([indexPath isEqual:[_currentPath lastObject]]) {
         // If the cell is equal to the last object, the last move is undone.
         [self av_undoMoves:1];
@@ -220,7 +217,7 @@ NSString * const kBoardCellReuseIdentifier = @"kBoardCellReuseIdentifier";
     if ([_currentPath containsObject:indexPath]) {
         return;
     }
-    
+
     NSIndexPath *newMove = nil;
     if (indexPath.row == self.selectedIndex.row && indexPath.section == self.selectedIndex.section - 1) {
         newMove = [self av_moveUp];
@@ -292,7 +289,7 @@ NSString * const kBoardCellReuseIdentifier = @"kBoardCellReuseIdentifier";
         NSMutableArray<NSNumber *> *columnArray = [NSMutableArray new];
         for (NSUInteger column = 0; column < self.boardSize; column++) {
             NSNumber *value = @(1 + arc4random() % self.upperRange);
-            if ((row == self.boardSize-1 && column == self.boardSize-1) || (row == 0 && column == 0)) {
+            if ((row == self.boardSize - 1 && column == self.boardSize - 1) || (row == 0 && column == 0)) {
                 value = @(0);
             }
             [columnArray addObject:value];
@@ -325,10 +322,9 @@ NSString * const kBoardCellReuseIdentifier = @"kBoardCellReuseIdentifier";
             _randomNumberMapping[@(value)] = @(newValue);
         }
     }
-    CGFloat multiplier =
-        self.colorScale * (CGFloat)(newValue - 1) / (CGFloat)(self.upperRange - 1);
-    CGFloat offColor = (200 - 75*multiplier)/255.0f;
-    CGFloat onColor = (255 - 10*multiplier)/255.0f;
+    CGFloat multiplier = self.colorScale * (CGFloat)(newValue - 1) / (CGFloat)(self.upperRange - 1);
+    CGFloat offColor = (200 - 75 * multiplier) / 255.0f;
+    CGFloat onColor = (255 - 10 * multiplier) / 255.0f;
     return [UIColor colorWithRed:offColor green:offColor blue:onColor alpha:1.0f];
 }
 

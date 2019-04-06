@@ -12,8 +12,8 @@
 #import "AVMainViewController.h"
 #import "AVRootViewController.h"
 #import "AVTitleLabel.h"
-#import "UIView+Avenue.h"
 #import "UIColor+Avenue.h"
+#import "UIView+Avenue.h"
 
 @interface AVInstructionViewController () <AVExitBarDelegate>
 @end
@@ -23,9 +23,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     self.view.backgroundColor = [UIColor backgroundColor];
-    
+
     UILabel *instructionsLabel = [[UILabel alloc] init];
     instructionsLabel.translatesAutoresizingMaskIntoConstraints = NO;
     instructionsLabel.font = [UIFont systemFontOfSize:22.0f weight:UIFontWeightRegular];
@@ -35,7 +35,7 @@
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
     paragraphStyle.paragraphSpacing = 15.0f;
-    NSDictionary *attributes = @{ NSParagraphStyleAttributeName : paragraphStyle };
+    NSDictionary *attributes = @{NSParagraphStyleAttributeName : paragraphStyle};
     instructionsLabel.attributedText = [[NSAttributedString alloc] initWithString:instructionsString
                                                                        attributes:attributes];
     instructionsLabel.numberOfLines = 0;
@@ -43,13 +43,13 @@
     [self.view addSubview:instructionsLabel];
     [instructionsLabel resizeHorizontallyWithSuperviewAndPadding:25.0f];
     [instructionsLabel centerVerticallyWithSuperview];
-    
+
     AVTitleLabel *titleLabel = [[AVTitleLabel alloc] init];
     titleLabel.text = @"How to play";
     [self.view addSubview:titleLabel];
     [titleLabel centerHorizontallyWithSuperview];
     [titleLabel pinToTopOfSuperviewSafeAreaLayoutGuide];
-    
+
     AVExitBar *exitBar = [[AVExitBar alloc] initWithDelegate:self];
     [self.view addSubview:exitBar];
     [exitBar centerHorizontallyWithSuperview];

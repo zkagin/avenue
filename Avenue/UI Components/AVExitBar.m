@@ -22,14 +22,14 @@ static const CGFloat kExitBarHeight = 80.0f;
     self = [super init];
     if (self) {
         _delegate = delegate;
-        
+
         _exitButton = [UIButton buttonWithType:UIButtonTypeSystem];
         [_exitButton setTitle:@"\u2716" forState:UIControlStateNormal];
         [_exitButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         _exitButton.titleLabel.font = [UIFont systemFontOfSize:kExitButtonFontSize weight:UIFontWeightHeavy];
         [_exitButton addTarget:self action:@selector(av_didTapExitButton) forControlEvents:UIControlEventTouchUpInside];
         _exitButton.translatesAutoresizingMaskIntoConstraints = NO;
-        
+
         [self addSubview:_exitButton];
         [_exitButton centerVerticallyWithSuperview];
         [_exitButton resizeHorizontallyWithSuperview];

@@ -7,8 +7,8 @@
 //
 
 #import "AVLevelCollectionViewCell.h"
-#import "UIView+Avenue.h"
 #import "UIColor+Avenue.h"
+#import "UIView+Avenue.h"
 
 @implementation AVLevelCollectionViewCell
 

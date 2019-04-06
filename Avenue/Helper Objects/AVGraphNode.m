@@ -25,8 +25,8 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"AVGraphNode: Row: %ld, Column: %ld, Value: %ld, DistanceToNode: %ld",
-            _row, _column, _value, _distanceToNode];
+    return [NSString stringWithFormat:@"AVGraphNode: Row: %ld, Column: %ld, Value: %ld, DistanceToNode: %ld", _row,
+                                      _column, _value, _distanceToNode];
 }
 
 - (BOOL)isEqual:(id)object
@@ -34,18 +34,15 @@
     if (self == object) {
         return YES;
     }
-    
+
     if (![object isKindOfClass:[AVGraphNode class]]) {
         return NO;
     }
-    
+
     AVGraphNode *newObj = (AVGraphNode *)object;
-    BOOL isSame = newObj.row == self.row
-    && newObj.column == self.column
-    && newObj.value == self.value
-    && newObj.distanceToNode == self.distanceToNode
-    && newObj.previousNode == self.previousNode;
-    
+    BOOL isSame = newObj.row == self.row && newObj.column == self.column && newObj.value == self.value &&
+                  newObj.distanceToNode == self.distanceToNode && newObj.previousNode == self.previousNode;
+
     return isSame;
 }
 

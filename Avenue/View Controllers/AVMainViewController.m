@@ -8,13 +8,13 @@
 
 #import "AVMainViewController.h"
 
-#import "AVGlobalStateHelper.h"
 #import "AVGameViewController.h"
-#import "AVLevelsViewController.h"
+#import "AVGlobalStateHelper.h"
 #import "AVInstructionViewController.h"
+#import "AVLevelsViewController.h"
 #import "AVRootViewController.h"
-#import "UIView+Avenue.h"
 #import "UIColor+Avenue.h"
+#import "UIView+Avenue.h"
 
 static const CGFloat kIntroContainerBuffer = 16.0f;
 static const CGFloat kIntroButtonFontSize = 32.0f;
@@ -37,16 +37,17 @@ static const CGFloat kAnimationDelay = 0.8f;
     return self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor backgroundColor];
-    
+
     // Create main stack view and set up constraints.
     _containerStackView = [AVMainViewController av_createStackView];
     [self.view addSubview:_containerStackView];
     [_containerStackView resizeHorizontallyWithSuperview];
     [_containerStackView centerVerticallyWithSuperview];
-    
+
     // Create action buttons and add to the stack view.
     UIButton *titleButton = [AVMainViewController av_createActionButtonWithTitle:@"Avenue" isBold:YES];
     UIButton *playButton = [AVMainViewController av_createActionButtonWithTitle:@"Play" isBold:NO];
@@ -54,7 +55,7 @@ static const CGFloat kAnimationDelay = 0.8f;
     [_containerStackView addArrangedSubview:titleButton];
     [_containerStackView addArrangedSubview:playButton];
     [_containerStackView addArrangedSubview:howToPlayButton];
-    
+
     // If there is an initial animation, the Play and How to play buttons start hidden.
     if (_hasInitialAnimation) {
         playButton.hidden = YES;
@@ -62,7 +63,7 @@ static const CGFloat kAnimationDelay = 0.8f;
         playButton.alpha = 0;
         howToPlayButton.alpha = 0;
     }
-    
+
     // Set up button targets.
     [playButton addTarget:self action:@selector(av_didTapPlay) forControlEvents:UIControlEventTouchUpInside];
     [howToPlayButton addTarget:self action:@selector(av_didTapHowToPlay) forControlEvents:UIControlEventTouchUpInside];
@@ -75,19 +76,20 @@ static const CGFloat kAnimationDelay = 0.8f;
         UIView *playButton = _containerStackView.arrangedSubviews[1];
         UIView *howToPlayButton = _containerStackView.arrangedSubviews[2];
         [UIView animateWithDuration:kAnimationDuration
-                              delay:kAnimationDelay
-                            options:UIViewAnimationOptionCurveEaseInOut
-                         animations:^{
-                             playButton.hidden = NO;
-                             howToPlayButton.hidden = NO;
-                         } completion:^(BOOL finished) {
-                             [UIView animateWithDuration:kAnimationDuration
-                                              animations:^{
-                                                  playButton.alpha = 1;
-                                                  howToPlayButton.alpha = 1;
-                                              }
-                                              completion:nil];
-                         }];
+            delay:kAnimationDelay
+            options:UIViewAnimationOptionCurveEaseInOut
+            animations:^{
+                playButton.hidden = NO;
+                howToPlayButton.hidden = NO;
+            }
+            completion:^(BOOL finished) {
+                [UIView animateWithDuration:kAnimationDuration
+                                 animations:^{
+                                     playButton.alpha = 1;
+                                     howToPlayButton.alpha = 1;
+                                 }
+                                 completion:nil];
+            }];
     }
 }
 
@@ -109,7 +111,7 @@ static const CGFloat kAnimationDelay = 0.8f;
     [actionButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     UIFontWeight fontWeight = isBold ? UIFontWeightBold : UIFontWeightMedium;
     actionButton.titleLabel.font = [UIFont systemFontOfSize:kIntroButtonFontSize weight:fontWeight];
-    
+
     return actionButton;
 }
 

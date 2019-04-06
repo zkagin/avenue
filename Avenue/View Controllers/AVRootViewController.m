@@ -9,8 +9,8 @@
 #import "AVRootViewController.h"
 #import "AVMainViewController.h"
 
-static UIViewController *_currentChildController;   // Currently displayed VC.
-static UIViewController *_rootViewController;       // Root container VC.
+static UIViewController *_currentChildController; // Currently displayed VC.
+static UIViewController *_rootViewController;     // Root container VC.
 
 @implementation AVRootViewController
 
@@ -30,17 +30,18 @@ static UIViewController *_rootViewController;       // Root container VC.
     [_currentChildController willMoveToParentViewController:nil];
     [_rootViewController addChildViewController:viewController];
     viewController.view.frame = _rootViewController.view.frame;
-    
+
     [_rootViewController transitionFromViewController:_currentChildController
-                                     toViewController:viewController
-                                             duration:0.3f
-                                              options:UIViewAnimationOptionTransitionCrossDissolve
-                                           animations:^{ }
-                                           completion:^(BOOL finished) {
-                                               [_currentChildController removeFromParentViewController];
-                                               [viewController didMoveToParentViewController:nil];
-                                               _currentChildController = viewController;
-                                           }];
+        toViewController:viewController
+        duration:0.3f
+        options:UIViewAnimationOptionTransitionCrossDissolve
+        animations:^{
+        }
+        completion:^(BOOL finished) {
+            [_currentChildController removeFromParentViewController];
+            [viewController didMoveToParentViewController:nil];
+            _currentChildController = viewController;
+        }];
 }
 
 @end

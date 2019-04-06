@@ -22,7 +22,6 @@ static const CGFloat kTitleLabelHeight = 64.0f;
         self.translatesAutoresizingMaskIntoConstraints = NO;
         self.font = [UIFont systemFontOfSize:kTitleLabelFontSize weight:UIFontWeightBold];
         [self.heightAnchor constraintEqualToConstant:kTitleLabelHeight].active = YES;
-        
     }
     return self;
 }

@@ -37,18 +37,18 @@ static const CGFloat kActionButtonFontSize = 36.0f;
 - (void)av_setupSubviews
 {
     self.translatesAutoresizingMaskIntoConstraints = NO;
-    
+
     _currentScoreLabel = [[UILabel alloc] init];
     _currentScoreLabel.font = [UIFont systemFontOfSize:kScoreFontSize weight:UIFontWeightHeavy];
     _currentScoreLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:_currentScoreLabel];
-    
+
     _perfectScoreLabel = [[UILabel alloc] init];
     _perfectScoreLabel.font = [UIFont systemFontOfSize:kScoreFontSize weight:UIFontWeightHeavy];
     _perfectScoreLabel.textAlignment = NSTextAlignmentRight;
     _perfectScoreLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:_perfectScoreLabel];
-    
+
     _actionButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [_actionButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     _actionButton.titleLabel.font = [UIFont systemFontOfSize:kActionButtonFontSize weight:UIFontWeightHeavy];
@@ -56,13 +56,15 @@ static const CGFloat kActionButtonFontSize = 36.0f;
     _actionButton.translatesAutoresizingMaskIntoConstraints = NO;
     [_actionButton setTitle:@"\u21ba" forState:UIControlStateNormal];
     [self addSubview:_actionButton];
-    
-    
-    [self addConstraints:
-        [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_currentScoreLabel]-[_actionButton]-[_perfectScoreLabel(==_currentScoreLabel)]-|"
-                                                options:NSLayoutFormatDirectionLeftToRight
-                                                metrics:nil
-                                                  views:NSDictionaryOfVariableBindings(_currentScoreLabel, _actionButton, _perfectScoreLabel)]];
+
+    [self
+        addConstraints:[NSLayoutConstraint
+                           constraintsWithVisualFormat:
+                               @"H:|-[_currentScoreLabel]-[_actionButton]-[_perfectScoreLabel(==_currentScoreLabel)]-|"
+                                               options:NSLayoutFormatDirectionLeftToRight
+                                               metrics:nil
+                                                 views:NSDictionaryOfVariableBindings(_currentScoreLabel, _actionButton,
+                                                                                      _perfectScoreLabel)]];
     [_currentScoreLabel pinToTopOfSuperviewWithPadding:10.0f];
     [_perfectScoreLabel pinToTopOfSuperviewWithPadding:10.0f];
     [_actionButton resizeVerticallyWithSuperview];
@@ -70,7 +72,7 @@ static const CGFloat kActionButtonFontSize = 36.0f;
     [_currentScoreLabel setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
     [_perfectScoreLabel setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
     [_actionButton setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
-    
+
     [self av_updateLabelText];
 }
 
@@ -110,12 +112,12 @@ static const CGFloat kActionButtonFontSize = 36.0f;
     if (self.currentScore == 0) {
         _currentScoreLabel.text = @"";
     } else {
-        _currentScoreLabel.text = [NSString stringWithFormat:@"Current: %ld",(long)self.currentScore];
+        _currentScoreLabel.text = [NSString stringWithFormat:@"Current: %ld", (long)self.currentScore];
     }
     if (self.perfectScore == 0) {
         _perfectScoreLabel.text = @"";
     } else {
-        _perfectScoreLabel.text = [NSString stringWithFormat:@"Goal: %ld",(long)self.perfectScore];
+        _perfectScoreLabel.text = [NSString stringWithFormat:@"Goal: %ld", (long)self.perfectScore];
     }
 }
 

@@ -8,8 +8,8 @@
 
 #import "AVGlobalStateHelper.h"
 
-NSString * const kUserDefaultMaxLevelKey = @"kUserDefaultMaxLevelKey";
-NSString * const kUserDefaultMaxDifficultyKey = @"kUserDefaultMaxDifficultyKey";
+NSString *const kUserDefaultMaxLevelKey = @"kUserDefaultMaxLevelKey";
+NSString *const kUserDefaultMaxDifficultyKey = @"kUserDefaultMaxDifficultyKey";
 
 @implementation AVGlobalStateHelper
 
