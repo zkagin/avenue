@@ -55,7 +55,7 @@
 		C12E6B571F5B64A600E463EE /* AVLevelCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVLevelCollectionViewLayout.m; sourceTree = "<group>"; };
 		C15842FF1F0C4C9F00E5E044 /* AVGameControlBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGameControlBar.h; sourceTree = "<group>"; };
 		C15843001F0C4C9F00E5E044 /* AVGameControlBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGameControlBar.m; sourceTree = "<group>"; };
-		C16B95891E638A88004DB069 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = ../Media.xcassets; sourceTree = "<group>"; };
+		C16B95891E638A88004DB069 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		C187169E1ECE59E300C5BB4D /* AVGlobalStateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGlobalStateHelper.h; sourceTree = "<group>"; };
 		C187169F1ECE59E300C5BB4D /* AVGlobalStateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGlobalStateHelper.m; sourceTree = "<group>"; };
 		C18ED41F1E10495B00ED3BE0 /* Avenue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Avenue.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,16 +135,26 @@
 		C18ED4211E10495B00ED3BE0 /* Avenue */ = {
 			isa = PBXGroup;
 			children = (
-				C18ED4221E10495B00ED3BE0 /* Supporting Files */,
-				C18ED4941E10602900ED3BE0 /* Class Extensions */,
-				C19DCF531EDCD5C8007795A0 /* View Controllers */,
-				C19DCF541EDCD5E2007795A0 /* UI Components */,
-				C19DCF551EDCD600007795A0 /* Helper Objects */,
+				FEC40AA1225837240016D472 /* View Controllers */,
+				FEC40AA0225836DE0016D472 /* UI Components */,
+				FEC40A9E225836880016D472 /* Helper Objects */,
+				FEC40A9B2258364B0016D472 /* Class Extensions */,
+				FEC1D286225834A000403E84 /* Supporting Files */,
 			);
 			path = Avenue;
 			sourceTree = "<group>";
 		};
-		C18ED4221E10495B00ED3BE0 /* Supporting Files */ = {
+		FE1DBD692257CC8F0093F598 /* AvenueTests */ = {
+			isa = PBXGroup;
+			children = (
+				FE1DBD732257CCD90093F598 /* AVGameGraphTests.m */,
+				FEC1D284225826F000403E84 /* AVBoardConfigurationTests.m */,
+				FE1DBD6C2257CC8F0093F598 /* Info.plist */,
+			);
+			path = AvenueTests;
+			sourceTree = "<group>";
+		};
+		FEC1D286225834A000403E84 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
 				C16B95891E638A88004DB069 /* Media.xcassets */,
@@ -154,10 +164,10 @@
 				C18ED4261E10495B00ED3BE0 /* AppDelegate.m */,
 				C18ED4231E10495B00ED3BE0 /* main.m */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		C18ED4941E10602900ED3BE0 /* Class Extensions */ = {
+		FEC40A9B2258364B0016D472 /* Class Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				C18ED4641E1053D800ED3BE0 /* UIView+Avenue.h */,
@@ -165,27 +175,27 @@
 				C18ED4951E10606000ED3BE0 /* UIColor+Avenue.h */,
 				C18ED4961E10606000ED3BE0 /* UIColor+Avenue.m */,
 			);
-			name = "Class Extensions";
+			path = "Class Extensions";
 			sourceTree = "<group>";
 		};
-		C19DCF531EDCD5C8007795A0 /* View Controllers */ = {
+		FEC40A9E225836880016D472 /* Helper Objects */ = {
 			isa = PBXGroup;
 			children = (
-				C1FEE3D21EE3581B001FB96B /* AVRootViewController.h */,
-				C1FEE3D31EE3581B001FB96B /* AVRootViewController.m */,
-				C18ED4391E104AB700ED3BE0 /* AVMainViewController.h */,
-				C18ED43A1E104AB700ED3BE0 /* AVMainViewController.m */,
-				C18ED4981E1062AF00ED3BE0 /* AVLevelsViewController.h */,
-				C18ED4991E1062AF00ED3BE0 /* AVLevelsViewController.m */,
-				C1FB684A1E4CF523002B70E9 /* AVGameViewController.h */,
-				C1FB684B1E4CF523002B70E9 /* AVGameViewController.m */,
-				C12E6B4E1F5B518D00E463EE /* AVInstructionViewController.h */,
-				C12E6B4F1F5B518D00E463EE /* AVInstructionViewController.m */,
+				C1FB684D1E513825002B70E9 /* AVGameGraph.h */,
+				C1FB684E1E513825002B70E9 /* AVGameGraph.m */,
+				FEC1D280225824B800403E84 /* AVBoardConfiguration.h */,
+				FEC1D281225824B800403E84 /* AVBoardConfiguration.m */,
+				FE1DBD762257D2260093F598 /* AVGraphNode.h */,
+				FE1DBD772257D2260093F598 /* AVGraphNode.m */,
+				C12E6B561F5B64A600E463EE /* AVLevelCollectionViewLayout.h */,
+				C12E6B571F5B64A600E463EE /* AVLevelCollectionViewLayout.m */,
+				C187169E1ECE59E300C5BB4D /* AVGlobalStateHelper.h */,
+				C187169F1ECE59E300C5BB4D /* AVGlobalStateHelper.m */,
 			);
-			name = "View Controllers";
+			path = "Helper Objects";
 			sourceTree = "<group>";
 		};
-		C19DCF541EDCD5E2007795A0 /* UI Components */ = {
+		FEC40AA0225836DE0016D472 /* UI Components */ = {
 			isa = PBXGroup;
 			children = (
 				C1FEE3CF1EDCEB1B001FB96B /* AVExitBar.h */,
@@ -201,34 +211,24 @@
 				C1FB685F1E516473002B70E9 /* AVLevelCollectionViewCell.h */,
 				C1FB68601E516473002B70E9 /* AVLevelCollectionViewCell.m */,
 			);
-			name = "UI Components";
+			path = "UI Components";
 			sourceTree = "<group>";
 		};
-		C19DCF551EDCD600007795A0 /* Helper Objects */ = {
+		FEC40AA1225837240016D472 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C1FB684D1E513825002B70E9 /* AVGameGraph.h */,
-				C1FB684E1E513825002B70E9 /* AVGameGraph.m */,
-				FEC1D280225824B800403E84 /* AVBoardConfiguration.h */,
-				FEC1D281225824B800403E84 /* AVBoardConfiguration.m */,
-				FE1DBD762257D2260093F598 /* AVGraphNode.h */,
-				FE1DBD772257D2260093F598 /* AVGraphNode.m */,
-				C12E6B561F5B64A600E463EE /* AVLevelCollectionViewLayout.h */,
-				C12E6B571F5B64A600E463EE /* AVLevelCollectionViewLayout.m */,
-				C187169E1ECE59E300C5BB4D /* AVGlobalStateHelper.h */,
-				C187169F1ECE59E300C5BB4D /* AVGlobalStateHelper.m */,
+				C1FEE3D21EE3581B001FB96B /* AVRootViewController.h */,
+				C1FEE3D31EE3581B001FB96B /* AVRootViewController.m */,
+				C18ED4391E104AB700ED3BE0 /* AVMainViewController.h */,
+				C18ED43A1E104AB700ED3BE0 /* AVMainViewController.m */,
+				C18ED4981E1062AF00ED3BE0 /* AVLevelsViewController.h */,
+				C18ED4991E1062AF00ED3BE0 /* AVLevelsViewController.m */,
+				C1FB684A1E4CF523002B70E9 /* AVGameViewController.h */,
+				C1FB684B1E4CF523002B70E9 /* AVGameViewController.m */,
+				C12E6B4E1F5B518D00E463EE /* AVInstructionViewController.h */,
+				C12E6B4F1F5B518D00E463EE /* AVInstructionViewController.m */,
 			);
-			name = "Helper Objects";
-			sourceTree = "<group>";
-		};
-		FE1DBD692257CC8F0093F598 /* AvenueTests */ = {
-			isa = PBXGroup;
-			children = (
-				FE1DBD732257CCD90093F598 /* AVGameGraphTests.m */,
-				FEC1D284225826F000403E84 /* AVBoardConfigurationTests.m */,
-				FE1DBD6C2257CC8F0093F598 /* Info.plist */,
-			);
-			path = AvenueTests;
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -497,7 +497,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = AK8FH6VEJW;
-				INFOPLIST_FILE = Avenue/Info.plist;
+				INFOPLIST_FILE = "Avenue/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kagin.avenue;
@@ -511,7 +511,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = AK8FH6VEJW;
-				INFOPLIST_FILE = Avenue/Info.plist;
+				INFOPLIST_FILE = "Avenue/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kagin.avenue;
